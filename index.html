@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirzah liberal.G | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #6495ED;
+  --secondary: #BA55D3;
+  --bg-dark: #0a0520;
+  --glass: rgba(255, 255, 255, 0.05);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{ scroll-behavior:smooth; }
+
+/* 🌌 SPACE BACKGROUND */
+body{
+  font-family:'Poppins',sans-serif;
+  background: var(--bg-dark);
+  color:#e0e0e0;
+  overflow-x:hidden;
+}
+
+#stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+}
+
+/* 🚀 HEADER NAVIGATION */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 5, 32, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(100, 149, 237, 0.2);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 20px;
+  gap: 35px;
+}
+
+nav a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  transition: 0.3s;
+  letter-spacing: 1px;
+}
+
+nav a:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--secondary);
+}
+
+/* 🟦 BOXED GLITCH NAME (LEFT ALIGNED) */
+.hero-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+}
+
+.name-box {
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  padding: 40px 60px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(100, 149, 237, 0.15);
+  position: relative;
+}
+
+.glitch-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: white;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.glitch-name::before,
+.glitch-name::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.glitch-name::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-name::after {
+  left: -2px;
+  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+  animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); }
+  20% { clip: rect(62px, 9999px, 42px, 0); }
+  100% { clip: rect(15px, 9999px, 86px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(10px, 9999px, 30px, 0); }
+  100% { clip: rect(70px, 9999px, 100px, 0); }
+}
+
+/* 🖼️ PROJECT SECTION (IMAGE LEFT, DETAILS RIGHT) */
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 80px;
+  background: var(--glass);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(100, 149, 237, 0.1);
+}
+
+.project-img-wrapper {
+  flex: 0 0 300px;
+}
+
+.project-circle-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  box-shadow: 0 0 20px rgba(100, 149, 237, 0.4);
+  transition: transform 0.5s ease;
+}
+
+.project-item:hover .project-circle-img {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.project-info {
+  flex: 1;
+}
+
+.project-info h3 {
+  font-family: 'Orbitron';
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+/* ===== GENERAL SECTIONS ===== */
+section {
+  padding: 100px 10% 60px;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Orbitron';
+  margin-bottom: 60px;
+  font-size: 2.5rem;
+  color: var(--secondary);
+}
+
+.skill-tag {
+  background: rgba(186, 85, 211, 0.15);
+  border: 1px solid var(--secondary);
+  padding: 12px 25px;
+  border-radius: 30px;
+  display: inline-block;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#skills">SKILLS</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="hero-container">
+    <div class="name-box">
+      <h1 class="glitch-name" data-text="Tirzah liberal.G">Tirzah liberal.G</h1>
+      <p style="letter-spacing: 5px; color: var(--primary); font-weight: bold; margin-top: 10px;">COMPUTER SCIENCE ENGINEER</p>
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <h2>ABOUT ME</h2>
+    <div style="background: var(--glass); padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary);">
+      <p style="line-height: 2; font-size: 1.1rem; text-align: justify;">
+        Motivated and responsible professional, ready to take up any assigned work with full dedication. 
+        As a Computer Science student at <b>Anand Institute of Higher Technology (2023-2027)</b>, I am a quick learner 
+        with a strong willingness to accept new skills and continuously improve performance for the company's growth.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal" style="text-align: center;">
+    <h2>TECHNICAL SKILLS</h2>
+    <div class="skill-tag">C Programming</div>
+    <div class="skill-tag">HTML5 / CSS3</div>
+    <div class="skill-tag">JavaScript</div>
+    <div class="skill-tag">Problem Solving</div>
+    <div class="skill-tag">Team Collaboration</div>
+    <div class="skill-tag">Communication</div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2>FEATURED PROJECTS</h2>
+
+    <div class="project-item">
+      <div class="project-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=500" alt="Education" class="project-circle-img">
+      </div>
+      <div class="project-info">
+        <h3>Smart Education</h3>
+        <p>This app helps village people understand basic education ideas easily. It provides short videos to give clear learning guidance and assists users in choosing the right courses and colleges for their future career growth.</p>
+        <p style="margin-top: 15px; font-weight: bold; color: var(--secondary);">Tech Stack: HTML, CSS, JavaScript</p>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=500" alt="Restaurant" class="project-circle-img">
+      </div>
+      <div class="project-info">
+        <h3>Restaurant Management</h3>
+        <p>A comprehensive web system featuring a secure login, admin dashboard, menu management, and billing. It generates dynamic reports using local data and supports full CRUD operations for efficient restaurant operations.</p>
+        <p style="margin-top: 15px; font-weight: bold; color: var(--secondary);">Tech Stack: HTML, CSS, JS, Local Storage</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>GET IN TOUCH</h2>
+    <div style="background: var(--glass); padding: 40px; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+      <div>
+        <p style="margin-bottom: 20px;">📧 Email: tirzahliberal@gmail.com</p>
+        <p style="margin-bottom: 20px;">📱 Phone: 9003080926</p>
+        <p>📍 Location: Chennai, Tamil Nadu</p>
+      </div>
+      <form style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="text" placeholder="Name" style="padding: 12px; background: transparent; border: 1px solid var(--primary); color: white; border-radius: 5px;">
+        <textarea placeholder="Message" rows="4" style="padding: 12px; background: transparent; border: 1px solid var(--primary); color: white; border-radius: 5px;"></textarea>
+        <button type="submit" style="background: var(--primary); border: none; padding: 12px; color: white; font-weight: bold; cursor: pointer;">SEND MESSAGE</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(100,149,237,0.1);">
+  <p>© 2026 Tirzah liberal.G | Engineering Student | AIHT</p>
+</footer>
+
+<script>
+  // Star Background
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    for(let i=0; i<200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.5
+      });
+    }
+  }
+
+  function animateStars() {
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+      ctx.fill();
+      s.y += s.speed;
+      if(s.y > canvas.height) s.y = 0;
+    });
+    requestAnimationFrame(animateStars);
+  }
+
+  window.addEventListener('resize', initStars);
+  initStars();
+  animateStars();
+
+  // Reveal Animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
